@@ -4,9 +4,11 @@ import jakarta.annotation.security.RolesAllowed;
 import javajwt.jwt.entity.Product;
 import javajwt.jwt.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class ProductController {
@@ -25,7 +27,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/product/{id}")
-    @RolesAllowed("ADMIN")
+    @PreAuthorize("hasAuthority(\"ADMIN\")") // @RolesAllowed only works for roles with 'ROLE_' prefix
     public void delete(@PathVariable Long id){
         this.productRepository.deleteById(id);
     }
