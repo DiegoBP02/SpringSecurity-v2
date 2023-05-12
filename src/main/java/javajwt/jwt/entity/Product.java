@@ -1,9 +1,7 @@
 package javajwt.jwt.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import javajwt.jwt.dto.ProductDto;
 
 @Entity(name = "product")
 public class Product {
@@ -18,6 +16,8 @@ public class Product {
 
     private String description;
 
+    private Long usuario_id;
+
     public Product(){
 
     }
@@ -26,6 +26,13 @@ public class Product {
         this.name = name;
         this.price = price;
         this.description = description;
+    }
+
+    public Product(ProductDto productDto, Long usuario_id) {
+        this.name = productDto.getName();
+        this.price = productDto.getPrice();
+        this.description = productDto.getDescription();
+        this.usuario_id = usuario_id;
     }
 
     public Long getId() {
