@@ -1,8 +1,12 @@
 package javajwt.jwt.controller;
 
+import jakarta.annotation.security.RolesAllowed;
+import javajwt.jwt.entity.Product;
+import javajwt.jwt.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class ProductController {
